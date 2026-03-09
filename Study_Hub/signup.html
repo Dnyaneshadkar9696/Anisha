@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">StudyHub</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="explore.html" class="nav-link">Explore Courses</a></li>
+                    <li><a href="mocktest.html" class="nav-link">Mock Tests</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing Plans</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sign Up Container -->
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>Create Your Account</h1>
+            <p>Join StudyHub and start your CET preparation journey</p>
+
+            <form action="SignupServlet" method="post">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="name" placeholder="Enter your full name" required>
+                    <span class="error-msg" id="error-fullname"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <span class="error-msg" id="error-email"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Minimum 6 characters" required>
+                    <span class="error-msg" id="error-password"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
+                    <span class="error-msg" id="error-confirm-password"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number"  pattern="[0-9]{10}" required>
+                    <span class="error-msg" id="error-phone"></span>
+    </div>
+
+
+                <div class="form-group">
+                    <label>Select Your Role</label>
+                    <div class="role-selection">
+                        <div class="radio-item">
+                            <input type="radio" id="studentRole" name="role" value="student" checked>
+                            <label for="studentRole">
+                                <div class="role-icon">👨‍🎓</div>
+                                <div class="role-title">Student</div>
+                                <div class="role-desc">Access courses and take tests</div>
+                            </label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="adminRole" name="role" value="admin">
+                            <label for="adminRole">
+                                <div class="role-icon">👨‍💼</div>
+                                <div class="role-title">Admin</div>
+                                <div class="role-desc">Manage content and updates</div>
+                            </label>
+                        </div>
+                    </div>
+                    <span class="error-msg" id="error-role"></span>
+                </div>
+
+                
+
+                <button type="submit" class="btn-submit">Sign Up</button>
+            </form>
+
+            <p class="auth-footer">
+                Already have an account? <a href="login.html">Log in here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktest.html">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>
