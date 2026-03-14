@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Exam - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="exam-page">
+    <!-- Timer and Top Bar -->
+    <div class="exam-topbar">
+        <div class="exam-title">
+            <h2 id="examTitle">CET Mock Test</h2>
+        </div>
+        <div class="timer-section">
+            <div class="timer" id="timer">
+                <span id="timerDisplay">01:30:00</span>
+            </div>
+            <p class="timer-label">Time Remaining</p>
+        </div>
+    </div>
+
+    <!-- Main Exam Layout -->
+    <div class="exam-container">
+        <!-- Question Section -->
+        <div class="exam-main">
+            <!-- Instructions Page -->
+            <div id="instructionsPage" class="instructions-page">
+                <h1>Exam Instructions</h1>
+                <div class="instructions-content">
+                    <h2>Instructions:</h2>
+                    
+                    <h3>Time Management</h3>
+                    <p>• Total Duration: 1 hour 30 minutes</p>
+                    <p>• 60 questions to answer</p>
+                    <p>• Timer will be displayed at the top-right corner</p>
+                    <p>• Be mindful of time management</p>
+
+                    <h3>Answering Questions</h3>
+                    <p>• Each question has 4 options: A, B, C, D</p>
+                    <p>• Click an option to select it</p>
+                    <p>• Use "Save & Next" to move to the next question</p>
+                    <p>• Use "Skip" to skip a question without answering</p>
+                    <p>• Use "Reset" to clear your selection for current question</p>
+                    <p>• Use "Mark for Review" to mark a question for later review</p>
+
+                    <h3>Navigation & Review</h3>
+                    <p>• Question numbers are shown on the right side</p>
+                    <p>• Click any question number to jump to that question</p>
+                    <p>• Color coding helps you track your progress</p>
+
+                    <h3>Question Status Indicators</h3>
+                    <p>• <span class="status-answered">■</span> Green: Question answered and saved</p>
+                    <p>• <span class="status-marked">■</span> Yellow: Question marked for review</p>
+                    <p>• <span class="status-unanswered">■</span> Gray: Question not answered</p>
+                    <p>• <span class="status-skipped">■</span> Red: Question skipped</p>
+
+                    <h3>Scoring</h3>
+                    <p>• Correct Answer: +1 point</p>
+                    <p>• Wrong Answer: 0 points (No negative marking)</p>
+                    <p>• All saved answers will be considered for scoring</p>
+
+                    <h3>Important Warnings</h3>
+                    <p>• Do NOT press keyboard keys during exam</p>
+                    <p>• Do NOT refresh the page</p>
+                    <p>• Do NOT minimize the browser window</p>
+                    <p>• Submit only when you are confident about your answers</p>
+                </div>
+
+                <button class="btn-proceed" onclick="proceedToConfirmation()">I Understand, Proceed to Start</button>
+            </div>
+
+            <!-- Confirmation Page -->
+            <div id="confirmationPage" class="confirmation-page" style="display:none;">
+                <h1>Ready to Take the Exam?</h1>
+                <div class="confirmation-content">
+                    <div class="info-card">
+                        <h3>Exam Details</h3>
+                        <p><strong>Duration:</strong> 1 hour 30 minutes</p>
+                        <p><strong>Questions:</strong> 60</p>
+                        <p><strong>Type:</strong> Multiple Choice (A/B/C/D)</p>
+                        <p><strong>Negative Marking:</strong> No</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Final Reminder</h3>
+                        <p>Once you start, the timer will begin counting down. You cannot pause the exam. Make sure you are ready and in a quiet environment.</p>
+                    </div>
+                </div>
+
+                <div class="confirmation-actions">
+                    <button class="btn-secondary" onclick="goBackToInstructions()">Go Back</button>
+                    <button class="btn-start" onclick="startExam()">Start Exam Now</button>
+                </div>
+            </div>
+
+            <!-- Exam Questions Page -->
+            <div id="examPage" style="display:none;">
+                <div class="question-header">
+                    <h2 id="questionNumber">Question 1 of 60</h2>
+                </div>
+
+                <div class="question-content">
+                    <h3 id="questionText">Question text will appear here</h3>
+                    
+                    <div class="options-container">
+                        <label class="option" id="option-a">
+                            <input type="radio" name="answer" value="A">
+                            <span class="option-text" id="optionA-text">Option A</span>
+                        </label>
+                        <label class="option" id="option-b">
+                            <input type="radio" name="answer" value="B">
+                            <span class="option-text" id="optionB-text">Option B</span>
+                        </label>
+                        <label class="option" id="option-c">
+                            <input type="radio" name="answer" value="C">
+                            <span class="option-text" id="optionC-text">Option C</span>
+                        </label>
+                        <label class="option" id="option-d">
+                            <input type="radio" name="answer" value="D">
+                            <span class="option-text" id="optionD-text">Option D</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-actions">
+                    <button class="btn-action" onclick="resetQuestion()">Reset</button>
+                    <button class="btn-action" onclick="skipQuestion()">Skip</button>
+                    <button class="btn-action" onclick="markForReview()">Mark for Review</button>
+                    <button class="btn-action btn-primary" onclick="saveAndNext()">Save & Next</button>
+                </div>
+            </div>
+
+            <!-- Results Page -->
+            <div id="resultsPage" style="display:none;">
+                <div class="results-container">
+                    <h1>Exam Completed!</h1>
+                    <div class="results-summary">
+                        <div class="result-card">
+                            <h3>Total Questions</h3>
+                            <p class="result-number" id="totalQuestions">60</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>Answered</h3>
+                            <p class="result-number" id="totalAnswered">0</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>Correct Answers</h3>
+                            <p class="result-number" id="correctAnswers">0</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>Your Score</h3>
+                            <p class="result-number score" id="finalScore">0</p>
+                        </div>
+                    </div>
+
+                    <div class="results-details">
+                        <h2>Detailed Results</h2>
+                        <div class="results-grid" id="resultsGrid">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn-action" onclick="viewReview()">Review Answers</button>
+                        <button class="btn-action" onclick="retakeTest()">Retake Test</button>
+                        <button class="btn-action" onclick="window.location.href='mocktest.html'">Back to Tests</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Navigation Panel -->
+        <div class="exam-sidebar" id="examSidebar" style="display:none;">
+            <h3>Questions</h3>
+            <div class="questions-panel" id="questionsPanel">
+                <!-- Question navigation numbers will be populated here -->
+            </div>
+            <button class="btn-submit" onclick="submitExam()">Submit Exam</button>
+        </div>
+    </div>
+
+    <script src="exam.js"></script>
+</body>
+</html>

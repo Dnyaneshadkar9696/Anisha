@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">StudyHub</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="explore.html" class="nav-link">Explore Courses</a></li>
+                    <li><a href="mocktest.html" class="nav-link">Mock Tests</a></li>
+                    <li><a href="study-material.html" class="nav-link">Study Material</a></li>
+                    <li><a href="pricing.html" class="nav-link active">Pricing Plans</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Page Content -->
+    <div class="pricing-page">
+
+        <!-- Hero -->
+        <div class="pricing-hero">
+            <h1>Choose Your Plan</h1>
+            <p>Invest in your CET success. Flexible plans for every type of learner.</p>
+        </div>
+
+        <!-- Cards -->
+        <div class="pricing-container">
+
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <div class="plan-icon">📖</div>
+                <h2>Free</h2>
+                <div class="price">
+                    <span class="currency">₹</span>0<span class="per">/month</span>
+                </div>
+                <ul class="feature-list">
+                    <li><span class="check">✓</span> 5 Mock Tests per month</li>
+                    <li><span class="check">✓</span> Basic Study Material</li>
+                    <li><span class="check">✓</span> Explore Courses</li>
+                    <li class="disabled"><span class="cross">✗</span> Detailed Analytics</li>
+                    <li class="disabled"><span class="cross">✗</span> Unlimited Mock Tests</li>
+                    <li class="disabled"><span class="cross">✗</span> Expert Mentorship</li>
+                </ul>
+                <button class="pricing-btn" onclick="openPayment('Free', 0)">Get Started</button>
+            </div>
+
+            <!-- Pro Plan (Popular) -->
+            <div class="pricing-card popular">
+                <span class="badge">⭐ Most Popular</span>
+                <div class="plan-icon">🚀</div>
+                <h2>Pro</h2>
+                <div class="price">
+                    <span class="currency">₹</span>299<span class="per">/month</span>
+                </div>
+                <ul class="feature-list">
+                    <li><span class="check">✓</span> Unlimited Mock Tests</li>
+                    <li><span class="check">✓</span> Full Study Material</li>
+                    <li><span class="check">✓</span> Detailed Performance Analytics</li>
+                    <li><span class="check">✓</span> Explore All Courses</li>
+                    <li><span class="check">✓</span> Progress Tracking</li>
+                    <li class="disabled"><span class="cross">✗</span> Expert Mentorship</li>
+                </ul>
+                <button class="pricing-btn popular-btn" onclick="openPayment('Pro', 299)">Get Pro</button>
+            </div>
+
+            <!-- Elite Plan -->
+            <div class="pricing-card">
+                <div class="plan-icon">🏆</div>
+                <h2>Elite</h2>
+                <div class="price">
+                    <span class="currency">₹</span>599<span class="per">/month</span>
+                </div>
+                <ul class="feature-list">
+                    <li><span class="check">✓</span> Everything in Pro</li>
+                    <li><span class="check">✓</span> Expert Mentorship Sessions</li>
+                    <li><span class="check">✓</span> Personalised Study Plan</li>
+                    <li><span class="check">✓</span> Priority Support</li>
+                    <li><span class="check">✓</span> Doubt Clearing Sessions</li>
+                    <li><span class="check">✓</span> Exam Strategy Guidance</li>
+                </ul>
+                <button class="pricing-btn" onclick="openPayment('Elite', 599)">Get Elite</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="payment-box" id="paymentModal">
+        <div class="payment-content">
+            <div class="payment-header">
+                <h2 id="modalTitle">Complete Payment</h2>
+                <button class="close-icon" onclick="closePayment()">✕</button>
+            </div>
+            <div class="payment-plan-info">
+                <p class="payment-plan-name" id="modalPlanName"></p>
+                <p class="payment-plan-amount" id="modalAmount"></p>
+            </div>
+            <p class="free-note" id="freeNote">🎉 This plan is completely Free! No payment needed.</p>
+            <div id="payArea">
+                <button class="pricing-btn pay-now-btn" onclick="showQR()">Pay Now via UPI</button>
+                <div class="qr" id="qrSection">
+                    <p class="qr-label">Scan to Pay</p>
+                    <div class="qr-wrapper">
+                        <img src="images/qr.png" alt="UPI QR Code" width="180" height="180">
+                    </div>
+                    <div class="upi-id">
+                        <p class="upi-badge">UPI ID</p>
+                        <p class="upi-name">studyhub@upi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-footer">
+                <button class="close-btn" onclick="closePayment()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktest.html">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+    <script>
+        function openPayment(plan, amount) {
+            document.getElementById('modalPlanName').textContent = plan + ' Plan';
+            document.getElementById('paymentModal').style.display = 'flex';
+            var freeNote = document.getElementById('freeNote');
+            var payArea = document.getElementById('payArea');
+            if (amount === 0) {
+                document.getElementById('modalTitle').textContent = 'Free Plan';
+                document.getElementById('modalAmount').textContent = '₹0 / month';
+                freeNote.style.display = 'block';
+                payArea.style.display = 'none';
+            } else {
+                document.getElementById('modalTitle').textContent = 'Complete Payment';
+                document.getElementById('modalAmount').textContent = '₹' + amount + ' / month';
+                freeNote.style.display = 'none';
+                payArea.style.display = 'block';
+                document.getElementById('qrSection').style.display = 'none';
+            }
+        }
+
+        function showQR() {
+            document.getElementById('qrSection').style.display = 'block';
+        }
+
+        function closePayment() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Close modal on backdrop click
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) closePayment();
+        });
+    </script>
+</body>
+</html>

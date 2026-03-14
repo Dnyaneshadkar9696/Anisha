@@ -1,0 +1,78 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Study Hub</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>SignupServlet</servlet-class>
+    </servlet>
+
+ <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>LoginServlet</servlet-class>
+    </servlet>
+
+<servlet>
+        <servlet-name>GetCoursesServlet</servlet-name>
+        <servlet-class>GetCoursesServlet</servlet-class>
+    </servlet>
+
+<servlet>
+        <servlet-name>CreateMockTestServlet</servlet-name>
+        <servlet-class>CreateMockTestServlet</servlet-class>
+    </servlet>
+
+<servlet>
+        <servlet-name>MockTestCatalogServlet</servlet-name>
+        <servlet-class>MockTestCatalogServlet</servlet-class>
+    </servlet>
+
+<servlet>
+        <servlet-name>SubjectMaterialServlet</servlet-name>
+        <servlet-class>SubjectMaterialServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateMockTestServlet</servlet-name>
+        <url-pattern>/CreateMockTestServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MockTestCatalogServlet</servlet-name>
+        <url-pattern>/MockTestCatalogServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SubjectMaterialServlet</servlet-name>
+        <url-pattern>/SubjectMaterialServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>GetCoursesServlet</servlet-name>
+        <url-pattern>/GetCoursesServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SignupServlet</servlet-name>
+        <url-pattern>/SignupServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+
+</web-app>

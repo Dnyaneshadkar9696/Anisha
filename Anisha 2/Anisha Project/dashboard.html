@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon">📚</div>
+                    <span class="logo-text">StudyHub</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+                    <li><a href="explore.html" class="nav-link">Explore Courses</a></li>
+                    <li><a href="MockTestCatalogServlet" class="nav-link">Mock Tests</a></li>
+                    <li><a href="study-material.html" class="nav-link">Study Material</a></li>
+                    <li><a href="pricing.html" class="nav-link">Pricing Plans</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Welcome, <span id="userName"></span>!</h1>
+            <p>Track your CET preparation progress</p>
+        </div>
+
+        <!-- Performance Stats -->
+        <div class="stats-grid">
+                <div class="stat-card">
+                <div class="stat-icon"></div>
+                <h3>Subjects Enrolled</h3>
+                <p class="stat-number" id="subjectsCount">0</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"></div>
+                <h3>Study Hours</h3>
+                <p class="stat-number" id="studyHours">0</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"></div>
+                <h3>Tests Completed</h3>
+                <p class="stat-number" id="testsCompleted">0</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"></div>
+                <h3>Overall Progress</h3>
+                <p class="stat-number" id="overallProgress">0%</p>
+            </div>
+        </div>
+
+        <!-- Selected Subjects -->
+        <section class="dashboard-section">
+            <h2>Your Selected Subjects</h2>
+            <div class="subjects-list" id="subjectsList">
+                <p class="no-data">No subjects selected yet</p>
+            </div>
+            <button class="btn-explore" onclick="window.location.href='explore.html'">Add More Subjects</button>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="dashboard-section">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="action-icon"></div>
+                    <h3>Explore Courses</h3>
+                    <p>Select and study different subjects</p>
+                    <button onclick="window.location.href='explore.html'" class="btn-action">Go to Courses</button>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"></div>
+                    <h3>Take Mock Tests</h3>
+                    <p>Practice with realistic exam papers</p>
+                    <button onclick="window.location.href='MockTestCatalogServlet'" class="btn-action">Take Test</button>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"></div>
+                    <h3>View Performance</h3>
+                    <p>Analyze your progress and results</p>
+                    <button onclick="viewPerformance()" class="btn-action">View Details</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Exam News & Updates -->
+        <section class="dashboard-section">
+            <h2>Latest Exam News & Updates</h2>
+            <div class="news-updates" id="newsUpdates">
+                <p class="no-data">No news updates yet</p>
+            </div>
+        </section>
+
+        <!-- Available Video Lectures -->
+        <section class="dashboard-section">
+            <h2>Video Lectures for Your Subjects</h2>
+            <div class="lectures-grid" id="lecturesGrid">
+                <p class="no-data">No lectures available yet</p>
+            </div>
+        </section>
+
+        <!-- Performance Chart -->
+        <section class="dashboard-section">
+            <h2>Subject-wise Performance</h2>
+            <div class="performance-chart" id="performanceChart">
+                <p class="no-data">No performance data yet. Take a mock test to see your performance.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktestCatalog.jsp">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+<script>requireLogin();</script>
+<script src="static/dashboard.js"></script>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-messaging-compat.js"></script>
+
+<!-- Firebase configuration -->
+<script src="static/firebase-config.js"></script>
+
+<!-- Notification permission -->
+<script src="static/notifications.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

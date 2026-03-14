@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Material - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">StudyHub</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="explore.html" class="nav-link">Explore Courses</a></li>
+                    <li><a href="mocktest.html" class="nav-link">Mock Tests</a></li>
+                    <li><a href="study-material.html" class="nav-link active">Study Material</a></li>
+                    <li><a href="pricing.html" class="nav-link">Pricing Plans</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons" id="navButtons">
+                <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="study-material-container">
+        <div class="study-material-header">
+            <h1>Study Material</h1>
+            <p>Open trusted resources for each CET topic.</p>
+        </div>
+
+        <section class="study-material-grid">
+            <article class="study-material-card">
+                <h3>Quantitative Aptitude</h3>
+                <a class="btn btn-material" href="https://www.indiabix.com/aptitude/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>Logical Reasoning</h3>
+                <a class="btn btn-material" href="https://www.indiabix.com/logical-reasoning/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>Verbal Ability</h3>
+                <a class="btn btn-material" href="https://www.indiabix.com/verbal-ability/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>Programming</h3>
+                <a class="btn btn-material" href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>DBMS</h3>
+                <a class="btn btn-material" href="https://www.geeksforgeeks.org/dbms/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>Data Structures</h3>
+                <a class="btn btn-material" href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>Computer Fundamentals</h3>
+                <a class="btn btn-material" href="https://www.tutorialspoint.com/computer_fundamentals/" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+
+            <article class="study-material-card">
+                <h3>Previous Year Papers</h3>
+                <a class="btn btn-material" href="https://www.mbauniverse.com/mah-mba-cet/sample-paper" target="_blank" rel="noopener noreferrer">Open</a>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktest.html">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="static/script.js"></script>
+    <script>requireLogin();</script>
+</body>
+</html>
