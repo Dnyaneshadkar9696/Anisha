@@ -1,0 +1,137 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Study Hub</display-name>
+
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>SignupServlet</servlet-class>
+    </servlet>
+
+ <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>LoginServlet</servlet-class>
+    </servlet>
+
+<servlet>
+        <servlet-name>GetCoursesServlet</servlet-name>
+        <servlet-class>GetCoursesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetStudyMaterialsServlet</servlet-name>
+        <servlet-class>GetStudyMaterialsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetSubjectsServlet</servlet-name>
+        <servlet-class>GetSubjectsServlet</servlet-class>
+    </servlet>
+
+<servlet>
+        <servlet-name>CreateMockTestServlet</servlet-name>
+        <servlet-class>CreateMockTestServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetMockTestsServlet</servlet-name>
+        <servlet-class>GetMockTestsServlet</servlet-class>
+    </servlet>
+
+<servlet>
+    <servlet-name>SelectCourseServlet</servlet-name>
+    <servlet-class>SelectCourseServlet</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>GetUserCoursesServlet</servlet-name>
+    <servlet-class>GetUserCoursesServlet</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>AddSubjectServlet</servlet-name>
+    <servlet-class>AddSubjectServlet</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>AdminGetSubjectsServlet</servlet-name>
+    <servlet-class>AdminGetSubjectsServlet</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>DeleteSubjectServlet</servlet-name>
+    <servlet-class>DeleteSubjectServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>DeleteSubjectServlet</servlet-name>
+    <url-pattern>/DeleteSubjectServlet</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet-mapping>
+    <servlet-name>AdminGetSubjectsServlet</servlet-name>
+    <url-pattern>/AdminGetSubjectsServlet</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+    <servlet-name>AddSubjectServlet</servlet-name>
+    <url-pattern>/AddSubjectServlet</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+    <servlet-name>GetUserCoursesServlet</servlet-name>
+    <url-pattern>/GetUserCoursesServlet</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet-mapping>
+    <servlet-name>SelectCourseServlet</servlet-name>
+    <url-pattern>/SelectCourseServlet</url-pattern>
+</servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CreateMockTestServlet</servlet-name>
+        <url-pattern>/CreateMockTestServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GetMockTestsServlet</servlet-name>
+        <url-pattern>/GetMockTestsServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>GetCoursesServlet</servlet-name>
+        <url-pattern>/GetCoursesServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GetStudyMaterialsServlet</servlet-name>
+        <url-pattern>/GetStudyMaterialsServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GetSubjectsServlet</servlet-name>
+        <url-pattern>/GetSubjectsServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>SignupServlet</servlet-name>
+        <url-pattern>/SignupServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
