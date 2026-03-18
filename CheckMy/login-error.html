@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Error - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1 class="error-title">Login Failed</h1>
+            <p class="error-message" id="errorMessage">Invalid login details. Please try again.</p>
+
+            <p class="error-note" id="redirectNote">Redirecting to login in <span id="countdown">5</span>s...</p>
+
+            <div class="error-actions">
+                <button class="btn-submit" onclick="window.location.href='login.html'">Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktest.html">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Show context message if provided
+        const params = new URLSearchParams(window.location.search);
+        const reason = params.get('reason');
+        if (reason === 'invalid') {
+            document.getElementById('errorMessage').textContent = 'Invalid email or password. Please try again.';
+        } else if (reason === 'locked') {
+            document.getElementById('errorMessage').textContent = 'Your account is locked. Please contact support.';
+        } else if (reason === 'server') {
+            document.getElementById('errorMessage').textContent = 'Server error occurred. Please try again later.';
+        }
+
+        // Auto redirect to login after a short delay
+        const countdownEl = document.getElementById('countdown');
+        let seconds = 5;
+        const interval = setInterval(() => {
+            seconds -= 1;
+            if (countdownEl) countdownEl.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = 'login.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

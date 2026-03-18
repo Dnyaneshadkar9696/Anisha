@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Courses - StudyHub</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <script>
+        try {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = 'login.html';
+            }
+        } catch (e) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                    <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">StudyHub</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="explore.html" class="nav-link active">Explore Courses</a></li>
+                    <li><a href="mocktest.html" class="nav-link">Mock Tests</a></li>
+                    <li><a href="study_materials.html" class="nav-link">Study Materials</a></li>
+                    <li><a href="pricingplan.html" class="nav-link">Pricing Plans</a></li>
+                    <li><a href="AboutUs.html" class="nav-link">About Us</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons" id="navButtons">
+                <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Explore Courses Page -->
+    <div class="explore-container">
+        <div class="explore-header">
+            <h1>Explore Courses</h1>
+            <p>Choose a course and start your CET preparation</p>
+        </div>
+
+        <!-- Check if logged in -->
+        <div id="notLoggedInMessage" class="alert alert-info" style="display:none;">
+            <p>Please <a href="login.html">log in</a> or <a href="signup.html">sign up</a> to select subjects and track your progress.</p>
+        </div>
+
+
+        <div class="courses-grid" id="coursesGrid">
+            <p class="no-data">Loading courses...</p>
+        </div>
+
+        </div>
+
+       
+           
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktest.html">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+<script src="static/script.js"></script>
+    <script src="static/explore.js"></script>
+</body>
+</html>
