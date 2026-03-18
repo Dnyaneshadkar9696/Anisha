@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Tests - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                    <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">StudyHub</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="explore.html" class="nav-link">Explore Courses</a></li>
+                    <li><a href="mocktest.html" class="nav-link active">Mock Tests</a></li>
+                    <li><a href="study_materials.html" class="nav-link">Study Materials</a></li>
+                    <li><a href="pricingplan.html" class="nav-link">Pricing Plans</a></li>
+                    <li><a href="AboutUs.html" class="nav-link">About Us</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons" id="navButtons">
+                <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mock Tests Page -->
+    <div class="mocktest-container">
+        <div class="mocktest-header">
+            <h1>CET Mock Tests</h1>
+            <p>Practice with realistic exam papers and improve your performance</p>
+
+            <div id="mocktestStatus" class="mocktest-status" style="display:none;"></div>
+        </div>
+
+        <!-- Check if logged in -->
+        <div id="notLoggedInMessage" class="alert alert-info" style="display:none;">
+            <p>Please <a href="login.html">log in</a> or <a href="signup.html">sign up</a> to take mock tests.</p>
+        </div>
+
+        <!-- Tests Grid -->
+        <div class="tests-grid" id="testsGrid">
+            <!-- Tests will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Test Confirmation Modal -->
+    <div id="testModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTestModal()">&times;</button>
+            <h2 id="testTitle">Mock Test</h2>
+            <p id="testDescription"></p>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeTestModal()">Cancel</button>
+                <button class="btn-action" onclick="startTest()">Yes, Start Test</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub</h4>
+                <p>Your ultimate CET preparation platform</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Courses</a></li>
+                    <li><a href="mocktest.html">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@studyhub.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+    <script src="auth.js"></script>
+    <script src="static/mocktest.js?v=2"></script>
+</body>
+</html>

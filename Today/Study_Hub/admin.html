@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - StudyHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script src="static/script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Ensure only logged-in admins can access this page (uses cookie + storage sync)
+        const currentUser = requireLogin('login.html');
+        if (!currentUser || (currentUser.role || '').toString().trim().toLowerCase() !== 'admin') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">StudyHub Admin</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="admin.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="AdminGetSubjectsServlet" class="nav-link">Manage Subjects</a></li>
+                    <li><a href="createMockTest.html" class="nav-link">Mocktests</a></li>
+                    <li><a href="admin.html#news" class="nav-link">News Updates</a></li>
+                    <li><a href="AboutUs.html" class="nav-link">About Us</a></li>
+                </ul>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="admin-header">
+                    <h1>Admin Dashboard</h1>
+                    <p>Welcome, <span id="adminName"></span></p>
+                </div>
+
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <h3>Total Subjects</h3>
+                        <p class="stat-number" id="totalSubjects">0</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <h3>Total Lectures</h3>
+                        <p class="stat-number" id="totalLectures">0</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <h3>Active News</h3>
+                        <p class="stat-number" id="totalNews">0</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <h3>Total Students</h3>
+                        <p class="stat-number" id="totalStudents">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Subjects Section -->
+            <section id="subjects-section" class="admin-section">
+                <div class="admin-header">
+                    <h1>Manage Subjects</h1>
+                    <button class="btn-add" onclick="openAddSubjectForm()">+ Add New Subject</button>
+                </div>
+
+                <!-- Add/Edit Subject Form -->
+                <div id="addSubjectForm" class="admin-form" style="display: none;">
+                    <h2 id="formTitle">Add New Subject</h2>
+                    <form id="subjectForm">
+                        <div class="form-group">
+                            <label for="subjectName">Subject Name</label>
+                            <input type="text" id="subjectName" required placeholder="e.g., Quantitative Ability">
+                            <span class="error-msg" id="error-subjectName"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subjectDesc">Description</label>
+                            <textarea id="subjectDesc" required placeholder="Subject description"></textarea>
+                            <span class="error-msg" id="error-subjectDesc"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subjectIcon">Icon/Emoji</label>
+                            <input type="text" id="subjectIcon" placeholder="e.g., 🔢">
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Save Subject</button>
+                            <button type="button" class="btn-cancel" onclick="closeAddSubjectForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Subjects List -->
+                <div class="admin-items-list">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Name</th>
+                                <th>Description</th>
+                                <th>Lectures Count</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectsList">
+                            <tr>
+                                <td colspan="4" class="no-data">No subjects added yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Lectures Section -->
+            <section id="lectures-section" class="admin-section">
+                <div class="admin-header">
+                    <h1>Manage Video Lectures</h1>
+                    <button class="btn-add" onclick="openAddLectureForm()">+ Add New Lecture</button>
+                </div>
+
+                <!-- Add/Edit Lecture Form -->
+                <div id="addLectureForm" class="admin-form" style="display: none;">
+                    <h2 id="lecFormTitle">Add New Lecture</h2>
+                    <form id="lectureForm">
+                        <div class="form-group">
+                            <label for="lectureSubject">Subject</label>
+                            <select id="lectureSubject" required>
+                                <option value="">Select Subject</option>
+                            </select>
+                            <span class="error-msg" id="error-lectureSubject"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lectureTitle">Lecture Title</label>
+                            <input type="text" id="lectureTitle" required placeholder="e.g., Introduction to Algebra">
+                            <span class="error-msg" id="error-lectureTitle"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lectureUrl">Video URL</label>
+                            <input type="url" id="lectureUrl" required placeholder="e.g., https://youtube.com/...">
+                            <span class="error-msg" id="error-lectureUrl"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lectureDuration">Duration (in minutes)</label>
+                            <input type="number" id="lectureDuration" required placeholder="e.g., 45">
+                            <span class="error-msg" id="error-lectureDuration"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lectureDesc">Description</label>
+                            <textarea id="lectureDesc" placeholder="Lecture description"></textarea>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Save Lecture</button>
+                            <button type="button" class="btn-cancel" onclick="closeAddLectureForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lectures List -->
+                <div class="admin-items-list">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Lecture Title</th>
+                                <th>Subject</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lecturesList">
+                            <tr>
+                                <td colspan="4" class="no-data">No lectures added yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Mock Tests Section -->
+            <section id="mocktests-section" class="admin-section">
+                <div class="admin-header">
+                    <h1>Create Mock Test</h1>
+                </div>
+
+                <div class="admin-form">
+                    <form action="CreateMockTestServlet" method="get">
+                        <div class="form-group">
+                            <label for="courseId">Course</label>
+                            <select name="course_id" id="courseId" required>
+                                <option value="">Select Course</option>
+                                <option value="1">MBA CET</option>
+                                <option value="2">MCA CET</option>
+                            </select>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section id="news-section" class="admin-section">
+                <div class="admin-header">
+                    <h1>Exam News & Updates</h1>
+                    <button class="btn-add" onclick="openAddNewsForm()">+ Add News Update</button>
+                </div>
+
+                <!-- Add/Edit News Form -->
+                <div id="addNewsForm" class="admin-form" style="display: none;">
+                    <h2 id="newsFormTitle">Add News Update</h2>
+                    <form id="newsForm">
+                        <div class="form-group">
+                            <label for="newsTitle">News Title</label>
+                            <input type="text" id="newsTitle" required placeholder="e.g., CET 2026 Date Announced">
+                            <span class="error-msg" id="error-newsTitle"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsCategory">Category</label>
+                            <select id="newsCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="exam-date">Exam Date</option>
+                                <option value="registration">Registration</option>
+                                <option value="important-dates">Important Dates</option>
+                                <option value="updates">General Updates</option>
+                            </select>
+                            <span class="error-msg" id="error-newsCategory"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsContent">Content</label>
+                            <textarea id="newsContent" required placeholder="News content"></textarea>
+                            <span class="error-msg" id="error-newsContent"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsIcon">Icon/Emoji</label>
+                            <input type="text" id="newsIcon" placeholder="e.g., 📅">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsDate">Date</label>
+                            <input type="date" id="newsDate" required>
+                            <span class="error-msg" id="error-newsDate"></span>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-submit">Save News</button>
+                            <button type="button" class="btn-cancel" onclick="closeAddNewsForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- News List -->
+                <div class="admin-items-list">
+                    <div id="newsList" class="news-grid">
+                        <div class="no-data">No news updates added yet</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics-section" class="admin-section">
+                <div class="admin-header">
+                    <h1>Analytics & Reports</h1>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Student Enrollment Trend</h3>
+                        <p class="analytics-text">Track how many students enroll each day</p>
+                        <button class="btn-view" onclick="viewEnrollmentTrend()">View Details</button>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Subject Popularity</h3>
+                        <p class="analytics-text">See which subjects are most popular</p>
+                        <button class="btn-view" onclick="viewSubjectPopularity()">View Details</button>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Lecture Engagement</h3>
+                        <p class="analytics-text">Check which lectures are most watched</p>
+                        <button class="btn-view" onclick="viewLectureEngagement()">View Details</button>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>User Activity</h3>
+                        <p class="analytics-text">Monitor overall platform activity</p>
+                        <button class="btn-view" onclick="viewUserActivity()">View Details</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>StudyHub Admin</h4>
+                <p>Content Management System</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="admin.html">Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('subjects')">Subjects</a></li>
+                    <li><a href="#" onclick="showSection('lectures')">Lectures</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>
+

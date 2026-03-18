@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="mq" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0B66C3"/>
+      <stop offset="100%" stop-color="#23A6F0"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="16" fill="url(#mq)"/>
+  <g fill="#fff" transform="translate(8,8)">
+    <text x="6" y="28" font-family="Segoe UI, Roboto, Arial" font-size="12" font-weight="700">∑</text>
+    <text x="28" y="28" font-family="Segoe UI, Roboto, Arial" font-size="12" font-weight="700">∫</text>
+    <text x="52" y="28" font-family="Segoe UI, Roboto, Arial" font-size="12" font-weight="700">π</text>
+
+    <g transform="translate(6,42)" fill="#fff" opacity="0.95">
+      <rect x="0" y="0" width="94" height="6" rx="2"></rect>
+      <rect x="0" y="12" width="64" height="6" rx="2"></rect>
+      <rect x="0" y="24" width="84" height="6" rx="2"></rect>
+    </g>
+
+    <g transform="translate(70,64)">
+      <circle cx="10" cy="10" r="10" fill="#fff" opacity="0.12"></circle>
+      <text x="10" y="14" text-anchor="middle" fill="#fff" font-size="10" font-family="Segoe UI">x²</text>
+    </g>
+  </g>
+</svg>
